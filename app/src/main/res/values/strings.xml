@@ -14,7 +14,7 @@
     <string name="welcome_screen_sign_up">SIGN UP</string>
     <string name="welcome_screen_log_in">LOG IN</string>
     <string name="log_in_screen_title">LOG IN</string>
-    <string name="log_in_screen_no_account">Don\'t have an account? </string>
+    <string name="log_in_screen_no_account">Don\'t have an account?</string>
     <string name="log_in_screen_sign_up">Sign up</string>
     <string name="welcome_screen_button_log_in">LOG IN</string>
     <string name="log_in_screen_text_field_email">Email address</string>

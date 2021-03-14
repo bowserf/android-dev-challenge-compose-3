@@ -1,6 +1,7 @@
 package com.example.androiddevchallenge
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -28,7 +29,7 @@ fun WelcomeScreen(
     onClickSignIn: () -> Unit
 ) {
     Image(
-        painter = painterResource(R.drawable.ic_light_welcome),
+        painter = painterResource(if (isSystemInDarkTheme()) R.drawable.ic_dark_welcome else R.drawable.ic_light_welcome),
         contentDescription = null,
         modifier = Modifier.fillMaxSize()
     )
@@ -40,7 +41,7 @@ fun WelcomeScreen(
             .padding(horizontal = 16.dp)
     ) {
         Image(
-            painter = painterResource(R.drawable.ic_light_logo),
+            painter = painterResource(if (isSystemInDarkTheme()) R.drawable.ic_dark_logo else R.drawable.ic_light_logo),
             contentDescription = null,
         )
         Spacer(modifier = Modifier.height(32.dp))

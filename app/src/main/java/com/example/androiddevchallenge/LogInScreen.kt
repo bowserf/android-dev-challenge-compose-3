@@ -1,6 +1,7 @@
 package com.example.androiddevchallenge
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -9,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -35,7 +37,7 @@ fun LogInScreen(
     val (password, setPassword) = remember { mutableStateOf("") }
 
     Image(
-        painter = painterResource(R.drawable.ic_light_login),
+        painter = painterResource(if (isSystemInDarkTheme()) R.drawable.ic_dark_login else R.drawable.ic_light_login),
         contentDescription = null,
         modifier = Modifier.fillMaxSize()
     )
@@ -62,7 +64,7 @@ fun LogInScreen(
                 )
             },
             colors = TextFieldDefaults.textFieldColors(
-                backgroundColor = MaterialTheme.colors.onPrimary
+                backgroundColor = MaterialTheme.colors.surface
             )
         )
         Spacer(modifier = Modifier.height(8.dp))
@@ -77,7 +79,7 @@ fun LogInScreen(
                 )
             },
             colors = TextFieldDefaults.textFieldColors(
-                backgroundColor = MaterialTheme.colors.onPrimary
+                backgroundColor = MaterialTheme.colors.surface
             )
         )
         Spacer(modifier = Modifier.height(8.dp))
@@ -100,6 +102,7 @@ fun LogInScreen(
                 text = stringResource(id = R.string.log_in_screen_no_account),
                 style = MaterialTheme.typography.body1
             )
+            Spacer(Modifier.width(4.dp))
             Text(
                 text = stringResource(id = R.string.log_in_screen_sign_up),
                 textDecoration = TextDecoration.Underline,

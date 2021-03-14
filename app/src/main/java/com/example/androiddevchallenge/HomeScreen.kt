@@ -131,7 +131,7 @@ fun HomeContentScreen(sessions: List<Session>) {
                 )
             },
             colors = TextFieldDefaults.textFieldColors(
-                backgroundColor = MaterialTheme.colors.onPrimary
+                backgroundColor = MaterialTheme.colors.surface
             ),
             leadingIcon = {
                 Image(
@@ -188,7 +188,10 @@ fun FavoriteCard(session: Session) {
         modifier = Modifier
             .height(56.dp)
             .width(192.dp)
-            .background(MaterialTheme.colors.onPrimary, MaterialTheme.shapes.small)
+            .background(
+                MaterialTheme.colors.surface,
+                MaterialTheme.shapes.small
+            )
     ) {
         Image(
             painter = painterResource(id = session.cover),
