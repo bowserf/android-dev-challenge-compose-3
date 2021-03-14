@@ -3,7 +3,6 @@ package com.example.androiddevchallenge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -18,71 +17,66 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.androiddevchallenge.ui.theme.MyTheme
-import dev.chrisbanes.accompanist.insets.systemBarsPadding
 
 @Composable
 fun WelcomeScreen(
     onClickSignUp: () -> Unit,
     onClickSignIn: () -> Unit
 ) {
-    Box(
+    Image(
+        painter = painterResource(if (isSystemInDarkTheme()) R.drawable.ic_dark_welcome else R.drawable.ic_light_welcome),
+        contentScale = ContentScale.FillBounds,
+        contentDescription = null,
+        modifier = Modifier.fillMaxSize()
+    )
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
         modifier = Modifier
             .fillMaxSize()
-            .systemBarsPadding()
+            .padding(horizontal = 16.dp)
     ) {
         Image(
-            painter = painterResource(if (isSystemInDarkTheme()) R.drawable.ic_dark_welcome else R.drawable.ic_light_welcome),
+            painter = painterResource(if (isSystemInDarkTheme()) R.drawable.ic_dark_logo else R.drawable.ic_light_logo),
             contentDescription = null,
-            modifier = Modifier.fillMaxSize()
         )
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center,
+        Spacer(modifier = Modifier.height(32.dp))
+        Button(
+            onClick = onClickSignUp,
+            shape = MaterialTheme.shapes.medium,
             modifier = Modifier
-                .fillMaxSize()
-                .padding(horizontal = 16.dp)
+                .height(72.dp)
+                .fillMaxWidth()
         ) {
-            Image(
-                painter = painterResource(if (isSystemInDarkTheme()) R.drawable.ic_dark_logo else R.drawable.ic_light_logo),
-                contentDescription = null,
+            Text(
+                text = stringResource(id = R.string.welcome_screen_sign_up)
             )
-            Spacer(modifier = Modifier.height(32.dp))
-            Button(
-                onClick = onClickSignUp,
-                shape = MaterialTheme.shapes.medium,
-                modifier = Modifier
-                    .height(72.dp)
-                    .fillMaxWidth()
-            ) {
-                Text(
-                    text = stringResource(id = R.string.welcome_screen_sign_up)
-                )
-            }
-            Spacer(modifier = Modifier.height(8.dp))
-            Button(
-                onClick = onClickSignIn,
-                colors = ButtonDefaults.buttonColors(
-                    backgroundColor = MaterialTheme.colors.secondary
-                ),
-                shape = MaterialTheme.shapes.medium,
-                modifier = Modifier
-                    .height(72.dp)
-                    .fillMaxWidth()
-            ) {
-                Text(
-                    text = stringResource(id = R.string.welcome_screen_log_in)
-                )
-            }
+        }
+        Spacer(modifier = Modifier.height(8.dp))
+        Button(
+            onClick = onClickSignIn,
+            colors = ButtonDefaults.buttonColors(
+                backgroundColor = MaterialTheme.colors.secondary
+            ),
+            shape = MaterialTheme.shapes.medium,
+            modifier = Modifier
+                .height(72.dp)
+                .fillMaxWidth()
+        ) {
+            Text(
+                text = stringResource(id = R.string.welcome_screen_log_in)
+            )
         }
     }
 }
 
-@Preview
+@Preview(widthDp = 360, heightDp = 640)
 @Composable
 fun WelcomeScreenPreview() {
     MyTheme {

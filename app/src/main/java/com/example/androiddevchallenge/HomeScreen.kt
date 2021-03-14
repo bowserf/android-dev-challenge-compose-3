@@ -18,8 +18,10 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.BottomAppBar
 import androidx.compose.material.BottomNavigationItem
+import androidx.compose.material.ContentAlpha
 import androidx.compose.material.FabPosition
 import androidx.compose.material.FloatingActionButton
+import androidx.compose.material.LocalContentColor
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
@@ -92,6 +94,7 @@ fun HomeFullScreen(sessions: List<Session>) {
                         )
                     },
                     selected = true,
+                    unselectedContentColor = LocalContentColor.current.copy(alpha = ContentAlpha.disabled),
                     onClick = { /* nothing to do */ }
                 )
                 BottomNavigationItem(
@@ -110,6 +113,7 @@ fun HomeFullScreen(sessions: List<Session>) {
                         )
                     },
                     selected = false,
+                    unselectedContentColor = LocalContentColor.current.copy(alpha = 0.25f),
                     onClick = { /* nothing to do */ }
                 )
             }
@@ -130,7 +134,7 @@ fun HomeContentScreen(sessions: List<Session>) {
             onValueChange = { setSearch(it) },
             label = {
                 Text(
-                    text = stringResource(id = R.string.log_in_screen_text_field_email),
+                    text = stringResource(id = R.string.log_in_screen_text_field_search),
                     style = MaterialTheme.typography.body1
                 )
             },
