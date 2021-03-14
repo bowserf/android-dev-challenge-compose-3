@@ -24,29 +24,38 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.core.view.WindowCompat
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigate
 import androidx.navigation.compose.rememberNavController
 import com.example.androiddevchallenge.ui.theme.MyTheme
+import dev.chrisbanes.accompanist.insets.ProvideWindowInsets
+import dev.chrisbanes.accompanist.insets.systemBarsPadding
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
         setContent {
-            MyTheme {
-                MyApp()
+            ProvideWindowInsets {
+                MyTheme {
+                    MyApp()
+                }
             }
         }
     }
 }
 
-// Start building your app here!
 @Composable
-fun MyApp() {
+fun MyApp(
+    modifier: Modifier = Modifier
+) {
     Surface(
         color = MaterialTheme.colors.background,
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
     ) {
         val navController = rememberNavController()

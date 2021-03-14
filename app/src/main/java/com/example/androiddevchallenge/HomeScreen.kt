@@ -41,6 +41,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.androiddevchallenge.ui.theme.MyTheme
+import dev.chrisbanes.accompanist.insets.systemBarsPadding
 
 @Composable
 fun HomeScreen() {
@@ -52,6 +53,9 @@ fun HomeScreen() {
 @Composable
 fun HomeFullScreen(sessions: List<Session>) {
     Scaffold(
+        modifier = Modifier
+            .fillMaxSize()
+            .systemBarsPadding(),
         floatingActionButton = {
             FloatingActionButton(
                 onClick = { /* nothing to do*/ },

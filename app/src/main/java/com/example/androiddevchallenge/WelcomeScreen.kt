@@ -3,6 +3,7 @@ package com.example.androiddevchallenge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -22,54 +23,61 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.androiddevchallenge.ui.theme.MyTheme
+import dev.chrisbanes.accompanist.insets.systemBarsPadding
 
 @Composable
 fun WelcomeScreen(
     onClickSignUp: () -> Unit,
     onClickSignIn: () -> Unit
 ) {
-    Image(
-        painter = painterResource(if (isSystemInDarkTheme()) R.drawable.ic_dark_welcome else R.drawable.ic_light_welcome),
-        contentDescription = null,
-        modifier = Modifier.fillMaxSize()
-    )
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
+    Box(
         modifier = Modifier
             .fillMaxSize()
-            .padding(horizontal = 16.dp)
+            .systemBarsPadding()
     ) {
         Image(
-            painter = painterResource(if (isSystemInDarkTheme()) R.drawable.ic_dark_logo else R.drawable.ic_light_logo),
+            painter = painterResource(if (isSystemInDarkTheme()) R.drawable.ic_dark_welcome else R.drawable.ic_light_welcome),
             contentDescription = null,
+            modifier = Modifier.fillMaxSize()
         )
-        Spacer(modifier = Modifier.height(32.dp))
-        Button(
-            onClick = onClickSignUp,
-            shape = MaterialTheme.shapes.medium,
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
             modifier = Modifier
-                .height(72.dp)
-                .fillMaxWidth()
+                .fillMaxSize()
+                .padding(horizontal = 16.dp)
         ) {
-            Text(
-                text = stringResource(id = R.string.welcome_screen_sign_up)
+            Image(
+                painter = painterResource(if (isSystemInDarkTheme()) R.drawable.ic_dark_logo else R.drawable.ic_light_logo),
+                contentDescription = null,
             )
-        }
-        Spacer(modifier = Modifier.height(8.dp))
-        Button(
-            onClick = onClickSignIn,
-            colors = ButtonDefaults.buttonColors(
-                backgroundColor = MaterialTheme.colors.secondary
-            ),
-            shape = MaterialTheme.shapes.medium,
-            modifier = Modifier
-                .height(72.dp)
-                .fillMaxWidth()
-        ) {
-            Text(
-                text = stringResource(id = R.string.welcome_screen_log_in)
-            )
+            Spacer(modifier = Modifier.height(32.dp))
+            Button(
+                onClick = onClickSignUp,
+                shape = MaterialTheme.shapes.medium,
+                modifier = Modifier
+                    .height(72.dp)
+                    .fillMaxWidth()
+            ) {
+                Text(
+                    text = stringResource(id = R.string.welcome_screen_sign_up)
+                )
+            }
+            Spacer(modifier = Modifier.height(8.dp))
+            Button(
+                onClick = onClickSignIn,
+                colors = ButtonDefaults.buttonColors(
+                    backgroundColor = MaterialTheme.colors.secondary
+                ),
+                shape = MaterialTheme.shapes.medium,
+                modifier = Modifier
+                    .height(72.dp)
+                    .fillMaxWidth()
+            ) {
+                Text(
+                    text = stringResource(id = R.string.welcome_screen_log_in)
+                )
+            }
         }
     }
 }
