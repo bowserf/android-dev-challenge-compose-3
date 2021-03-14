@@ -19,4 +19,7 @@
     <string name="welcome_screen_button_log_in">LOG IN</string>
     <string name="log_in_screen_text_field_email">Email address</string>
     <string name="log_in_screen_text_field_password">Password</string>
+    <string name="home_screen_favorite_title">FAVORITE COLLECTIONS</string>
+    <string name="home_screen_body_title">ALIGN YOUR BODY</string>
+    <string name="home_screen_mind_title">ALIGN YOUR MIND</string>
 </resources>
