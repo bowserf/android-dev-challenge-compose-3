@@ -18,11 +18,16 @@ package com.example.androiddevchallenge
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.navigate
+import androidx.navigation.compose.rememberNavController
 import com.example.androiddevchallenge.ui.theme.MyTheme
 
 class MainActivity : AppCompatActivity() {
@@ -39,8 +44,36 @@ class MainActivity : AppCompatActivity() {
 // Start building your app here!
 @Composable
 fun MyApp() {
-    Surface(color = MaterialTheme.colors.background) {
-        Text(text = "Ready... Set... GO!")
+    Surface(
+        color = MaterialTheme.colors.background,
+        modifier = Modifier
+            .fillMaxSize()
+    ) {
+        val navController = rememberNavController()
+        NavHost(navController, startDestination = Screen.Welcome.route) {
+            composable(Screen.Welcome.route) {
+                WelcomeScreen(
+                    onClickSignUp = {},
+                    onClickSignIn = {
+                        navController.navigate(Screen.LogIn.route) {
+                            // nothing to do
+                        }
+                    }
+                )
+            }
+            composable(Screen.LogIn.route) {
+                LogInScreen(
+                    onClickLogIn = { email, password ->
+                        navController.navigate(Screen.Home.route) {
+                            // nothing to do
+                        }
+                    }
+                )
+            }
+            composable(Screen.Home.route) {
+                HomeScreen()
+            }
+        }
     }
 }
 

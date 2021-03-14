@@ -76,6 +76,7 @@ dependencies {
 
     implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0"
+    implementation "androidx.navigation:navigation-compose:1.0.0-alpha09"
 
     testImplementation 'junit:junit:4.13.2'
 
