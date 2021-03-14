@@ -15,7 +15,12 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.BottomAppBar
+import androidx.compose.material.BottomNavigationItem
+import androidx.compose.material.FabPosition
+import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
@@ -40,7 +45,73 @@ import com.example.androiddevchallenge.ui.theme.MyTheme
 fun HomeScreen() {
     val viewModel: HomeViewModel = viewModel()
     val sessions = viewModel.getLiveSessions().observeAsState()
-    HomeContentScreen(sessions = sessions.value!!)
+    HomeFullScreen(sessions = sessions.value!!)
+}
+
+@Composable
+fun HomeFullScreen(sessions: List<Session>) {
+    Scaffold(
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = { /* nothing to do*/ },
+                backgroundColor = MaterialTheme.colors.primary
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.ic_play),
+                    contentDescription = null,
+                    colorFilter = ColorFilter.tint(MaterialTheme.colors.onPrimary),
+                    modifier = Modifier
+                        .size(24.dp)
+                )
+            }
+        },
+        floatingActionButtonPosition = FabPosition.Center,
+        isFloatingActionButtonDocked = true,
+        bottomBar = {
+            BottomAppBar(
+                backgroundColor = MaterialTheme.colors.background
+            ) {
+                BottomNavigationItem(
+                    icon = {
+                        Image(
+                            painter = painterResource(id = R.drawable.ic_spa),
+                            contentDescription = null,
+                            colorFilter = ColorFilter.tint(MaterialTheme.colors.onBackground),
+                            modifier = Modifier.size(18.dp)
+                        )
+                    },
+                    label = {
+                        Text(
+                            stringResource(R.string.home_screen_bottom_bar_home),
+                            style = MaterialTheme.typography.caption
+                        )
+                    },
+                    selected = true,
+                    onClick = { /* nothing to do */ }
+                )
+                BottomNavigationItem(
+                    icon = {
+                        Image(
+                            painter = painterResource(id = R.drawable.ic_account),
+                            contentDescription = null,
+                            colorFilter = ColorFilter.tint(MaterialTheme.colors.onBackground),
+                            modifier = Modifier.size(18.dp)
+                        )
+                    },
+                    label = {
+                        Text(
+                            stringResource(R.string.home_screen_bottom_bar_profile),
+                            style = MaterialTheme.typography.caption
+                        )
+                    },
+                    selected = false,
+                    onClick = { /* nothing to do */ }
+                )
+            }
+        }
+    ) {
+        HomeContentScreen(sessions = sessions)
+    }
 }
 
 @Composable
@@ -65,7 +136,8 @@ fun HomeContentScreen(sessions: List<Session>) {
                 Image(
                     painter = painterResource(id = R.drawable.ic_search),
                     contentDescription = null,
-                    colorFilter = ColorFilter.tint(MaterialTheme.colors.onSurface)
+                    colorFilter = ColorFilter.tint(MaterialTheme.colors.onSurface),
+                    modifier = Modifier.size(18.dp)
                 )
             },
             modifier = Modifier
@@ -185,7 +257,7 @@ fun HomeScreenPreview() {
     MyTheme {
         Surface(color = MaterialTheme.colors.background) {
             val sessions = provideSessions()
-            HomeContentScreen(sessions = sessions)
+            HomeFullScreen(sessions = sessions)
         }
     }
 }
