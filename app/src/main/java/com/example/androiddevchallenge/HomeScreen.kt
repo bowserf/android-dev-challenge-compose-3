@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -255,7 +256,11 @@ private fun createSessionPairsList(sessions: List<Session>): List<Pair<Session, 
 @Composable
 fun HomeScreenPreview() {
     MyTheme {
-        Surface(color = MaterialTheme.colors.background) {
+        Surface(
+            color = MaterialTheme.colors.background,
+            modifier = Modifier
+                .fillMaxSize()
+        ) {
             val sessions = provideSessions()
             HomeFullScreen(sessions = sessions)
         }

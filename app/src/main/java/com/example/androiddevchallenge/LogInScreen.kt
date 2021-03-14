@@ -113,7 +113,11 @@ fun LogInScreen(
 @Composable
 fun LogInScreenPreview() {
     MyTheme {
-        Surface(color = MaterialTheme.colors.background) {
+        Surface(
+            color = MaterialTheme.colors.background,
+            modifier = Modifier
+                .fillMaxSize()
+        ) {
             LogInScreen(
                 onClickLogIn = { _, _ -> }
             )

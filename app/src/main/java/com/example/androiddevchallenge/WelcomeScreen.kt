@@ -77,7 +77,11 @@ fun WelcomeScreen(
 @Composable
 fun WelcomeScreenPreview() {
     MyTheme {
-        Surface(color = MaterialTheme.colors.background) {
+        Surface(
+            color = MaterialTheme.colors.background,
+            modifier = Modifier
+                .fillMaxSize()
+        ) {
             WelcomeScreen(
                 onClickSignUp = {},
                 onClickSignIn = {}
